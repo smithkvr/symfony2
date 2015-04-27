@@ -1,0 +1,47 @@
+security:
+    firewalls:
+        secured_area:
+            pattern:    ^/
+            anonymous: ~
+            form_login:
+                login_path:  /login
+                check_path:  /login/check
+                username_parameter: email
+                password_parameter: password
+                #use_referer:        true
+                default_target_path: /dashboard
+                remember_me: true
+            logout:                
+                path:   /logout
+            remember_me:
+                key: puntclub_12645465
+                lifetime: 31536000 # 365 days in seconds
+                path:     /
+                domain:   ~ # Defaults to the current domain from $_SERVER
+    access_control:
+            - { path: ^/dashboard, roles: ROLE_USER }
+            - { path: ^/club, roles: ROLE_USER }
+            - { path: ^/invite/to/puntclub, roles: ROLE_USER }
+            - { path: ^/existinguser/signup, roles: ROLE_USER }
+            - { path: ^/switch, roles: ROLE_USER }
+            - { path: ^/account, roles: ROLE_USER }
+            - { path: ^/invitations, roles: ROLE_USER }
+            - { path: ^/notification, roles: ROLE_USER }
+            - { path: ^/email/json/upload, roles: ROLE_USER}
+            - { path: ^/email/preview, roles: ROLE_USER}
+            # - { path: ^/club, roles: ROLE_USER } TODO: only "club_join" should be publically accessible
+
+
+    providers:
+        main:
+            entity: { class: AcmeDemoBundle:User, property: email }
+        # in_memory:
+        #     users:
+        #         user:  { password: userpass, roles: 'ROLE_USER' }
+        #         admin: { password: adminpass, roles: 'ROLE_ADMIN' }
+    encoders:
+            Acme\DemoBundle\Entity\User:
+                algorithm:   md5
+                iterations: 1
+                encode_as_base64: false
+

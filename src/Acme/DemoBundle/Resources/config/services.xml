@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="twig.extension.acme.demo" class="Acme\DemoBundle\Twig\Extension\DemoExtension" public="false">
+            <tag name="twig.extension" />
+            <argument type="service" id="twig.loader" />
+        </service>
+
+        <service id="acme.demo.listener" class="Acme\DemoBundle\EventListener\ControllerListener">
+            <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" />
+            <argument type="service" id="twig.extension.acme.demo" />
+        </service>
+        
+        <service id="form_login" class="Acme\DemoBundle\Form\LoginForm">
+            <argument type="service" id="validator"/>
+        </service>
+        
+        <service id="form_reset_password" class="Acme\DemoBundle\Form\ResetPasswordForm">
+            <argument type="service" id="validator"/>
+        </service>
+      
+        <service id="form_new_password" class="Acme\DemoBundle\Form\NewPasswordForm">
+            <argument type="service" id="validator"/>
+            <argument type="service" id="factory"/>
+            <argument type="service" id="FormDbService"/>
+        </service>
+          
+        <service id="factory" class="Acme\DemoBundle\Service\FactoryService"></service>
+        
+        <service id="util" class="Acme\DemoBundle\Utility\Util">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+        
+        <service id="FormDbService" class="Acme\DemoBundle\Service\FormDbService">
+            <argument type="service" id="doctrine" on-invalid="ignore" />
+            <argument type="service" id="factory" on-invalid="ignore" />
+        </service>
+        
+        <service id="AccountService" class="Acme\DemoBundle\Service\AccountService">
+            <argument type="service" id="doctrine" on-invalid="ignore" />
+            <argument type="service" id="factory" on-invalid="ignore" />
+            <argument type="service" id="service_container" on-invalid="ignore" />
+            <argument type="service" id="util" on-invalid="ignore" />
+            <argument type="service" id="security.encoder_factory" on-invalid="ignore" />
+        </service>
+        
+        <service id="emailer" class="Acme\DemoBundle\Service\EmailService">
+            <argument type="service" id="factory" on-invalid="ignore" />
+            <argument type="service" id="util" on-invalid="ignore" />
+            <argument type="service" id="router" on-invalid="ignore" />
+            <argument type="service" id="mailer" on-invalid="ignore" />
+            <argument type="service" id="templating" on-invalid="ignore" />
+            <argument type="service" id="service_container" on-invalid="ignore" />
+        </service>
+        
+        
+    </services>
+</container>

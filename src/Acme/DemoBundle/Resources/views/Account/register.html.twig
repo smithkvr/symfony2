@@ -1,0 +1,16 @@
+{# src/Acme/DemoBundle/Resources/views/Account/register.html.twig #}
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% block body %}
+
+
+{% for flashMessage in app.session.flashbag.get('success') %}
+<div class="flash-message">
+{{ flashMessage }}
+  </div>
+{% endfor %}
+
+
+{{ form(form) }}
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+{% block title %} Log in & Get on{% endblock %}
+{% block body %}
+
+    <div id="content" class="container">
+
+    <section class="pc-login bx-shadow mtmexl">
+        <h1>WELCOME BACK</h1>
+        {{ include('AcmeDemoBundle:Form:login.html.twig') }}
+        <!-- Post Click Tracking Location: puntclub.com.au Log In -->
+        <script type="text/javascript">
+            <!--
+            var dd = new Date();
+            var ord = Math.round(Math.abs(Math.sin(dd.getTime()))*1000000000)%10000000;
+            var fd_pct_src = new String("<scr"+"ipt src=\"//adsfac.net/pct_mx.asp?L=224143&source=js&ord="+ord+"\" type=\"text/javascript\"></scr"+"ipt>");
+            document.write(fd_pct_src);
+            -->
+        </script>
+        <noscript>
+            <iframe frameborder="0" width="0" height="0" src="//adsfac.net/pct_mx.asp?L=224143&source=if"></iframe>
+        </noscript>
+    </section>
+    </div>
+
+{% endblock %}

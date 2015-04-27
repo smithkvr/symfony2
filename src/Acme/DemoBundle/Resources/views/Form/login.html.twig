@@ -1,0 +1,48 @@
+{% if loginError is defined and loginError %}
+    <div class="alert alert-error"><strong>Sorry</strong>, those details didn't match. Try again or <a href="{{ url('reset_password') }}">reset password</a></div>
+{% endif %}
+
+<form id="form_login" class="form-horizontal" action="{{ url('login_check') }}" method="post" enctype="application/x-www-form-urlencoded">
+
+<div class="control-group row ">
+    <div class="sd-12">
+        <label for="login-email" class="form-label">Email</label>
+        <input id="login-email" name="email" type="text" class="form-control" placeholder="Email" value="{{ loginUsername is defined ? loginUsername : '' }}">
+    </div>
+</div>
+
+
+<div class="control-group row ">
+    <div class="sd-12">
+        <label for="login-password" class="form-label">Password</label>
+        <input id="login-password" name="password" type="password" class="form-control" placeholder="Password">
+    </div>
+</div>
+
+    <div class="control-group row " style="margin-top: 22px;margin-bottom: 15px;">
+        <div class="sd-12">
+        <span id="rememberMeSpan" class="checkbox">
+            <input type="checkbox" id="remember_me" name="_remember_me" checked />
+            <label for="remember_me"></label>
+        </span>
+        <label for="remember_me" class="form-label">Remember me</label>
+        </div>
+    </div>
+
+    <button type="submit" id="login-submit" class="btn btn-warning  yellow-btn" data-original-title="">Login</button>
+    {% if _targetPath is defined %}<input type="hidden" name="_target_path" value="{{ _targetPath }}" />{% endif %}
+
+
+
+</form>
+
+    <div class="cf">
+    <a class="signup-link" href="/register">SIGN UP</a>
+    <a class="fogot-pass-link" href="{{ url('reset_password') }}" id="reset_password_button">Forgot your password?</a>
+    </div>
+
+
+
+
+
+

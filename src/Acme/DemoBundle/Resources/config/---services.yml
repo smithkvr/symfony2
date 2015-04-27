@@ -1,0 +1,33 @@
+parameters:
+    util.class:     Acme\DemoBundle\Utility\Util
+
+    security.authentication.success_handler.class: Acme\DemoBundle\Component\Security\Http\Authentication\AuthenticationSuccessHandler
+
+    factoryservice.class:   Acme\DemoBundle\Service\FactoryService
+
+services:
+    twig.viamedia_extension:
+        class: Acme\DemoBundle\Twig\UtilExtension
+        arguments: [ '@service_container' ]
+        tags:
+            - { name: twig.extension }
+        calls:
+            - [ setUtil, [ @util ] ]
+            - [ setTransactionService, [ @TransactionService ] ]
+
+    util:
+        class:        %util.class%
+        calls:
+            - [ setContainer, [ @service_container ] ]
+
+    form_login:
+        class:        Acme\DemoBundle\Form\LoginForm
+        arguments:    [@validator]
+
+    form_reset_password:
+        class:        Acme\DemoBundle\Form\ResetPasswordForm
+        arguments:    [@validator]
+
+    AccountService:
+        class:        Acme\DemoBundle\Service\AccountService
+        arguments:    [@doctrine, @factory]

@@ -1,0 +1,44 @@
+_welcome:
+    path:     /
+    defaults: { _controller: AcmeDemoBundle:Welcome:index }
+
+_demo_secured:
+    resource: "@AcmeDemoBundle/Controller/SecuredController.php"
+    type:     annotation
+
+_demo:
+    resource: "@AcmeDemoBundle/Controller/DemoController.php"
+    type:     annotation
+    prefix:   /demo
+
+account_register:
+    path:     /register
+    defaults: { _controller: AcmeDemoBundle:Account:register }
+
+account_create:
+    path:     /register/create
+    defaults: { _controller: AcmeDemoBundle:Account:create }
+
+_ac_login:
+    path:     /login
+    defaults: { _controller: AcmeDemoBundle:Login:login }
+
+login_check:
+    path:     /login/check
+    defaults: { _controller: AcmeDemoBundle:Login:loginCheck }
+    
+logout:
+    path:     /logout
+    defaults: { _controller: AcmeDemoBundle:Login:logout }
+
+reset_password: 
+    path:     /reset/password
+    defaults: { _controller: AcmeDemoBundle:Account:resetPassword }
+ 
+resetPasswordToken: 
+    path:     /reset/password/{token}
+    defaults: { _controller: AcmeDemoBundle:Account:changePassword }
+
+dashboard:
+    path:     /dashboard
+    defaults: { _controller: AcmeDemoBundle:Welcome:index }

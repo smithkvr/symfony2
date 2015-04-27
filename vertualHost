@@ -1,0 +1,19 @@
+<VirtualHost *:80>
+    ServerAdmin admin@example.com
+    DocumentRoot "/home/smith/Projects/symfony2/web"
+    #ServerAlias symfony2.dev
+    ServerName symfony2.dev
+    ErrorLog /var/log/apache2/symfony2.log
+    CustomLog /var/log/apache2/symfony2-access.log combined
+    <Directory "/home/smith/Projects/symfony2/web">            
+       Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+</VirtualHost>
+
+
+https://dl.dropboxusercontent.com/u/41381905/symfony2.zip
+
+https://dl.dropboxusercontent.com/u/41381905/src.zip
